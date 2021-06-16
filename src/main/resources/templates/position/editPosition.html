@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменить данные</title>
+</head>
+<body>
+Внесите изменения:
+<form th:method="PATCH" th:action="@{/position/{name}(name=${position.getName()})}" th:object="${position}">
+    <label for="name"> Наименование должности</label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <br/>
+    <label>Статус</label>
+    <a><input type="radio" value="Действующий" th:field="*{status}">Действующий</a>
+    <a><input type="radio" value="Архивный" th:field="*{status}">Архивный</a>
+    <br/>
+    <input type="submit" value="Внести изменения">
+</body>
+</html>

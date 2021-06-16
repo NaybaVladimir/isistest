@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Меню "Банки"</title>
+</head>
+<body>
+<form th:method="GET" th:action="@{/bank/newBank}">
+    <input type="submit" value="Добавить новый банк"/>
+</form>
+<form th:method="GET" th:action="@{/}">
+    <input type="submit" value="В главное меню"/>
+</form>
+<hr/>
+
+<table border="1" align="left | center | right">
+    <tr>
+        <td>id</td>
+        <td>bic</td>
+        <td>Название банка</td>
+        <td>Адрес</td>
+        <td>Статус</td>
+        <td>Список ЗП проекта</td>
+    </tr>
+    <div th:each="bank : ${bank}">
+        <tr>
+            <td th:text="${bank.getId()}">id</td>
+            <td th:text="${bank.getBic()}">bic</td>
+            <td th:text="${bank.getName()}">Название банка</td>
+            <td th:text="${bank.getAddress()}">Адрес</td>
+            <td th:text="${bank.getStatus()}">Статус</td>
+            <td>
+                <form th:method="GET" th:action="@{bank/{id}/list (id=${bank.getId()})}">
+                    <input type="submit" value="Посмотреть список зарплатного проекта"/>
+                </form>
+            </td>
+            <td>
+                <form th:method="GET" th:action="@{bank/{id}/edit (id=${bank.getId()})}">
+                    <input type="submit" value="Редактировать"/>
+                </form>
+            </td>
+            <td>
+                <form th:method="DELETE" th:action="@{bank/{id}(id=${bank.getId()})}">
+                    <input type="submit" value="Удалить"/>
+                </form>
+            </td>
+
+        </tr>
+    </div>
+</table>
+</body>
+</html>
+<!--<div th:each="employee : ${bank.getEmployees()}">-->
+<!--    <a th:text="&{employee.getSurname()}">Фамилия</a>-->
+<!--    <a th:text="&{employee.getName()}">Имя</a>-->
+<!--    <a th:text="&{employee.getPatronymic()}">Отчество</a>-->
+<!--    <a th:text="&{employee.getDateBirthday}">Дата рождения</a>-->
+<!--</div>-->

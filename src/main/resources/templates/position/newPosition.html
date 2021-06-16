@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить новую должность</title>
+</head>
+<body>
+Введите данные:
+<form th:method="POST" th:action="@{/position}" th:object="${position}">
+    <label for="name"> Наименование должности</label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <br/>
+    <input type="submit" value="Добавить сотрудника">
+</body>
+</html>

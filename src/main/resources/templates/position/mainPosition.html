@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Меню "Должности"</title>
+</head>
+<body>
+<form th:method="GET" th:action="@{/position/newPosition}">
+    <input type="submit" value="Добавить новоую должность"/>
+</form>
+<form th:method="GET" th:action="@{/}">
+    <input type="submit" value="В главное меню"/>
+</form>
+
+<hr/>
+
+<table border="1">
+    <tr>
+        <td>Наименование Должности</td>
+        <td>Статус</td>
+    </tr>
+    <div th:each="position : ${position}">
+        <tr>
+            <td th:text="${position.getName()}">Наименование Должности</td>
+            <td th:text="${position.getStatus()}">Статус</td>
+            <td>
+                <form th:method="GET" th:action="@{position/{name}/edit (name=${position.getName()})}">
+                    <input type="submit" value="Редактировать"/>
+                </form>
+            </td>
+            <td>
+                <form th:method="DELETE" th:action="@{position/{name}(name=${position.getName()})}">
+                    <input type="submit" value="Удалить"/>
+                </form>
+            </td>
+
+        </tr>
+    </div>
+</table>
+
+</body>
+</html>

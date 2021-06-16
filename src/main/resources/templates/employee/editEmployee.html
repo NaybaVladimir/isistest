@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменить данные</title>
+</head>
+<body>
+Внесите изменения:
+<form th:method="PATCH" th:action="@{/employee/{id}(id=${employee.getId()})}" th:object="${employee}">
+    <label for="name"> Имя</label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <br/>
+    <label for="surname">Фамилия</label>
+    <input type="text" th:field="*{surname}" id="surname">
+    <br/>
+    <label for="patronymic">Отчество</label>
+    <input type="text" th:field="*{patronymic}" id="patronymic">
+    <br/>
+    <label>Пол</label>
+    <a><input type="radio" value="Мужской" th:field="*{sex}">Мужской</a>
+    <a><input type="radio" value="Женский" th:field="*{sex}">Женский</a>
+    <br/>
+    <label for="dateBirthday">Дата рождения(ДД.ММ.ГГГГ)</label>
+    <input type="date" th:field="*{dateBirthday}" id="dateBirthday">
+    <br/>
+    <label for="position">Должность</label>
+    <input type="text" th:field="*{position}" id="position">
+    <br/>
+    <label for="dateOfEmployment">Дата трудоустройства(ДД.ММ.ГГГГ)</label>
+    <input type="date" th:field="*{dateOfEmployment}" id="dateOfEmployment">
+    <br/>
+    <label for="salaryLevel">ЗП(Одной цифрой(50000))</label>
+    <input type="number" th:field="*{salaryLevel}" id="salaryLevel">
+    <br/>
+    <label for="mobileNumber">Номер мобильного телефона</label>
+    <input type="tel" th:field="*{mobileNumber}" id="mobileNumber">
+    <br/>
+    <label for="workPhoneNumber">Номер рабочего телефона</label>
+    <input type="tel" th:field="*{workPhoneNumber}" id="workPhoneNumber">
+    <br/>
+    <label for="bank">Обслуживающий банк(ID)</label>
+    <input type="text" th:field="*{bank}" id="bank">
+    <br/>
+    <label>Статус</label>
+    <a><input type="radio" value="Действующий" th:field="*{status}">Действующий</a>
+    <a><input type="radio" value="Архивный" th:field="*{status}">Архивный</a>
+    <br/>
+    <input type="submit" value="Внести изменения">
+</form>
+<hr/>
+<table border="1">
+    <div th:each="bank : ${bank}">
+        <tr>
+            <td th:text="${bank.getId()}">id</td>
+            <td th:text="${bank.getBic()}">bic</td>
+            <td th:text="${bank.getName()}">Название банка</td>
+            <td th:text="${bank.getAddress()}">Адрес</td>
+            <td th:text="${bank.getStatus()}">Статус</td>
+
+        </tr>
+    </div>
+</table>
+<hr/>
+<table border="1">
+    <div th:each="position : ${position}">
+        <tr>
+            <td th:text="${position.getName()}">Наименование Должности</td>
+            <td th:text="${position.getStatus()}">Статус</td>
+        </tr>
+    </div>
+</table>
+</body>
+</html>

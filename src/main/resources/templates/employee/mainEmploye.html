@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Меню "сотрудники"</title>
+</head>
+<body>
+<form th:method="GET" th:action="@{/employee/newEmployee}">
+    <input type="submit" value="Добавить нового сотрудника"/>
+</form>
+<form th:method="GET" th:action="@{/}">
+    <input type="submit" value="В главное меню"/>
+</form>
+<hr/>
+<form th:method="GET" th:action="@{/employee}">
+    Отфильтровать по дате рождения:
+    От <input type="date" name="sortDateOt"/> до <input type="date" name="sortDateDo"/>
+    <button type="submit">Показать</button>
+</form>
+<form th:method="GET" th:action="@{/employee}">
+    ФИО <input type="text" name="fio"/>
+    <button type="submit">Показать</button>
+</form>
+<hr/>
+
+<table border="1">
+    <tr>
+        <td>id</td>
+        <td>Имя</td>
+        <td>Фамилия</td>
+        <td>Отчество</td>
+        <td>Пол</td>
+        <td>Дата_рождения</td>
+        <td>Должность</td>
+        <td>Дата_трудоустройства</td>
+        <td>ЗП</td>
+        <td>Мобильный_номер_телефона</td>
+        <td>Рабочий_номер_телефона</td>
+        <td>Банк</td>
+        <td>Статус</td>
+    </tr>
+    <div th:each="employee : ${employees}">
+        <tr>
+            <td th:text="${employee.getId()}">id</td>
+            <td th:text="${employee.getName()}">Имя</td>
+            <td th:text="${employee.getSurname()}">Фамилия</td>
+            <td th:text="${employee.getPatronymic()}">Отчество</td>
+            <td th:text="${employee.getSex()}">Пол</td>
+            <td th:text="${employee.getDateBirthday()}">Дата_рождения</td>
+            <td th:text="${employee.getPosition()==null? null : employee.getPosition().getName()}">Должность</td>
+            <td th:text="${employee.getDateOfEmployment()}">Дата_трудоустройства</td>
+            <td th:text="${employee.getSalaryLevel()}">ЗП</td>
+            <td th:text="${employee.getMobileNumber()}">Мобильный_номер_телефона</td>
+            <td th:text="${employee.getWorkPhoneNumber()}">Рабочий_номер_телефона</td>
+            <td th:text="${employee.getBank()==null? null: employee.getBank().getName()}">Банк</td>
+            <td th:text="${employee.getStatus()}">Статус</td>
+            <td>
+                <form th:method="GET" th:action="@{employee/{id}/edit (id=${employee.getId()})}">
+                    <input type="submit" value="Редактировать"/>
+                </form>
+            </td>
+            <td>
+                <form th:method="DELETE" th:action="@{employee/{id}(id=${employee.getId()})}">
+                    <input type="submit" value="Удалить"/>
+                </form>
+            </td>
+
+        </tr>
+    </div>
+</table>
+
+</body>
+</html>

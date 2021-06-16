@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список ЗП проекта</title>
+</head>
+<body>
+<form th:method="GET" th:action="@{/}">
+    <input type="submit" value="В главное меню"/>
+</form>
+<form th:method="GET" th:action="@{/bank}">
+    <input type="submit" value="В меню банки"/>
+</form>
+<hr/>
+<table border="1" align="left | center | right">
+    <tr>
+        <td>Фамилия</td>
+        <td>Имя</td>
+        <td>Отчество</td>
+        <td>Дата рождения</td>
+    </tr>
+    <div th:each="employee : ${employee}">
+        <tr>
+            <td th:text="${employee.getId()}">id</td>
+            <td th:text="${employee.getName()}">Имя</td>
+            <td th:text="${employee.getSurname()}">Фамилия</td>
+            <td th:text="${employee.getPatronymic()}">Отчество</td>
+            <td th:text="${employee.getSex()}">Пол</td>
+            <td th:text="${employee.getDateBirthday()}">Дата_рождения</td>
+            <td th:text="${employee.getPosition()==null? null : employee.getPosition().getName()}">Должность</td>
+            <td th:text="${employee.getDateOfEmployment()}">Дата_трудоустройства</td>
+            <td th:text="${employee.getSalaryLevel()}">ЗП</td>
+            <td th:text="${employee.getMobileNumber()}">Мобильный_номер_телефона</td>
+            <td th:text="${employee.getWorkPhoneNumber()}">Рабочий_номер_телефона</td>
+            <td th:text="${employee.getBank()==null? null: employee.getBank().getName()}">Банк</td>
+            <td th:text="${employee.getStatus()}">Статус</td>
+
+        </tr>
+    </div>
+</table>
+
+</body>
+</html>

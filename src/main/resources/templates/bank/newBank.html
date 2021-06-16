@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить банк</title>
+</head>
+<body>
+Введите данные:
+<form th:method="Post" th:action="@{/bank/{id}(id=${bank.getId()})}" th:object="${bank}">
+    <label for="name"> Название банка</label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <br/>
+    <label for="bic">БИК</label>
+    <input type="number" th:field="*{bic}" id="bic">
+    <br/>
+    <label for="address">Адресс</label>
+    <input type="text" th:field="*{address}" id="address">
+    <br/>
+
+    <input type="submit" value="Добавить">
+</body>
+</html>

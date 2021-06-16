@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменить данные</title>
+</head>
+<body>
+Внесите изменения:
+<form th:method="PATCH" th:action="@{/bank/{id}(id=${bank.getId()})}" th:object="${bank}">
+
+    <input type="hidden" th:field="*{name}">
+    <label for="bic">БИК</label>
+    <input type="number" th:field="*{bic}" id="bic">
+    <br/>
+    <label for="address">Адресс</label>
+    <input type="text" th:field="*{address}" id="address">
+    <br/>
+
+    <input type="submit" value="Внести изменения">
+</body>
+</html>
